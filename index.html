@@ -1,0 +1,1425 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CuciBeres – Laundry Profesional Jakarta Selatan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+
+    /* ============================================================
+       DESIGN TOKENS
+    ============================================================ */
+    :root {
+      --blue:        #2A4D88;
+      --blue-dark:   #1e3a6a;
+      --blue-mid:    #3d61a3;
+      --blue-bright: #4070d4;
+      --concerto:    #D9D9D8;
+      --glacial:     #b8c5d1;
+      --white:       #ffffff;
+      --off-white:   #f7f9fc;
+      --text:        #1a2b4a;
+      --text-mid:    #4a5a7a;
+      --text-light:  #8898b0;
+      --radius:      14px;
+      --radius-lg:   22px;
+      --shadow:      0 4px 28px rgba(42,77,136,.10);
+      --shadow-lg:   0 12px 50px rgba(42,77,136,.18);
+    }
+
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    a   { text-decoration: none; color: inherit; }
+
+    .container {
+      width: 92%;
+      max-width: 1160px;
+      margin: 0 auto;
+    }
+
+    /* ============================================================
+       NAVBAR
+    ============================================================ */
+    .navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 900;
+      background: rgba(26,42,80,.97);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: background .3s;
+    }
+    .navbar__inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 68px; padding: 0 20px;
+      max-width: 1160px; margin: 0 auto;
+    }
+    /* Logo: hanya gambar submark + teks, tanpa oval/kotak */
+    .navbar__logo {
+      display: flex; align-items: center; gap: 12px; color: var(--white);
+    }
+    /* Logo navbar: CB diperbesar sejajar dengan teks */
+    .navbar__logo-mark {
+      font-family: 'Lora', serif;
+      font-weight: 800; font-size: 28px;
+      color: var(--white);
+      letter-spacing: -.5px;
+      line-height: 1;
+    }
+    .navbar__logo-name {
+      font-family: 'Lora', serif; font-weight: 600; font-size: 18px; line-height: 1;
+    }
+    .navbar__logo-name small {
+      display: block; font-family: 'Poppins', sans-serif;
+      font-size: 10px; font-weight: 400; opacity: .55;
+      letter-spacing: 1.8px; text-transform: uppercase; margin-top: 2px;
+    }
+    .navbar__links {
+      display: flex; align-items: center; gap: 28px; list-style: none;
+    }
+    .navbar__links a {
+      color: rgba(255,255,255,.75); font-size: 13.5px; font-weight: 500;
+      transition: color .2s; position: relative;
+    }
+    .navbar__links a::after {
+      content: ''; position: absolute; bottom: -3px; left: 0;
+      width: 0; height: 2px; background: var(--white);
+      border-radius: 2px; transition: width .3s;
+    }
+    .navbar__links a:hover { color: var(--white); }
+    .navbar__links a:hover::after { width: 100%; }
+    /* Tombol CTA navbar — hapus oval kosong, tampilkan sebagai link underline */
+    .navbar__btn {
+      color: var(--white) !important;
+      font-weight: 700; font-size: 13px;
+      background: transparent;
+      border-bottom: 2px solid rgba(255,255,255,.5);
+      border-radius: 0;
+      padding: 2px 0;
+      transition: border-color .2s, color .2s;
+    }
+    .navbar__btn::after { display: none !important; }
+    .navbar__btn:hover { border-color: var(--white); }
+
+    /* ============================================================
+       HERO SECTION
+    ============================================================ */
+    .hero {
+      min-height: 100vh;
+      background:
+        linear-gradient(135deg, rgba(20,36,72,.92) 0%, rgba(42,77,136,.82) 55%, rgba(61,97,163,.70) 100%),
+        url('BACKGROUND CUCIBERES.jpg') center/cover no-repeat;
+      display: flex; align-items: center;
+      padding: 100px 0 80px;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(255,255,255,.06) 0%, transparent 65%);
+      top: -200px; right: -200px; pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(255,255,255,.04) 0%, transparent 65%);
+      bottom: -150px; left: -100px; pointer-events: none;
+    }
+
+    .hero__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px; align-items: center;
+      position: relative; z-index: 2;
+    }
+
+    /* LEFT */
+    .hero__badge {
+      display: inline-block;
+      background: rgba(255,255,255,.15);
+      border: 1.5px solid rgba(255,255,255,.35);
+      border-radius: 6px;
+      padding: 6px 18px;
+      font-size: 14px; font-weight: 700;
+      color: var(--white);
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      backdrop-filter: blur(8px);
+    }
+    .hero__title {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      line-height: 1.18;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+    .hero__sub {
+      font-family: 'Lora', serif;
+      font-size: clamp(.92rem, 1.6vw, 1.08rem);
+      color: rgba(255,255,255,.82);
+      line-height: 1.85;
+      margin-bottom: 32px;
+    }
+    .hero__location {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 50px;
+      padding: 9px 18px;
+      font-size: 13.5px; font-weight: 500; color: rgba(255,255,255,.9);
+      backdrop-filter: blur(6px);
+    }
+    .hero__location svg { width: 16px; height: 16px; fill: #ff6b6b; flex-shrink: 0; }
+
+    /* RIGHT — FORM CARD */
+    .form-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 40px 36px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.3);
+    }
+    .form-card__title {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800; font-size: 1.5rem;
+      color: var(--text); margin-bottom: 6px;
+    }
+    .form-card__sub {
+      font-family: 'Lora', serif;
+      font-size: .9rem; color: var(--text-mid);
+      line-height: 1.65; margin-bottom: 28px;
+    }
+    .form-group { margin-bottom: 18px; }
+    .form-group label {
+      display: block; font-size: 13px; font-weight: 600;
+      color: var(--text-mid); margin-bottom: 7px;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 13px 16px;
+      border: 1.5px solid #dde3ef;
+      border-radius: 10px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px; color: var(--text);
+      background: var(--off-white);
+      outline: none;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .form-group input::placeholder { color: #b0bec5; }
+    .form-group input:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(42,77,136,.1);
+      background: var(--white);
+    }
+    .btn-cta {
+      display: block; width: 100%;
+      background: linear-gradient(135deg, var(--blue), var(--blue-mid));
+      color: var(--white);
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700; font-size: 15px;
+      padding: 15px;
+      border-radius: 50px;
+      border: none; cursor: pointer;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 6px 24px rgba(42,77,136,.35);
+      margin-bottom: 18px;
+    }
+    .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(42,77,136,.4); }
+    .form-privacy {
+      text-align: center; font-size: 12px; color: var(--text-light);
+      line-height: 1.6;
+    }
+    .form-privacy a {
+      color: var(--blue); font-weight: 600;
+      text-decoration: underline; text-underline-offset: 2px;
+      cursor: pointer;
+    }
+
+    /* ============================================================
+       THANK YOU POPUP
+    ============================================================ */
+    .popup-overlay {
+      position: fixed; inset: 0; z-index: 2000;
+      background: rgba(10,20,50,.65);
+      backdrop-filter: blur(6px);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity .3s;
+    }
+    .popup-overlay.show { opacity: 1; pointer-events: all; }
+    .popup-box {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 50px 44px;
+      text-align: center; max-width: 420px; width: 90%;
+      transform: scale(.9); transition: transform .3s;
+      box-shadow: 0 20px 60px rgba(0,0,0,.2);
+    }
+    .popup-overlay.show .popup-box { transform: scale(1); }
+    .popup-icon {
+      width: 80px; height: 80px;
+      background: linear-gradient(135deg, #e8eef8, #d0daf2);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px;
+    }
+    .popup-title {
+      font-weight: 800; font-size: 1.5rem;
+      color: var(--text); margin-bottom: 10px;
+    }
+    .popup-text {
+      font-family: 'Lora', serif;
+      font-size: .97rem; color: var(--text-mid);
+      line-height: 1.75; margin-bottom: 28px;
+    }
+    .popup-close {
+      display: inline-block;
+      background: var(--blue); color: var(--white);
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 14px;
+      padding: 13px 36px; border-radius: 50px; border: none;
+      cursor: pointer; transition: background .2s, transform .2s;
+    }
+    .popup-close:hover { background: var(--blue-dark); transform: translateY(-2px); }
+
+    /* ============================================================
+       PRIVACY POLICY MODAL
+    ============================================================ */
+    .modal-overlay {
+      position: fixed; inset: 0; z-index: 1900;
+      background: rgba(10,20,50,.70);
+      backdrop-filter: blur(6px);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity .3s;
+    }
+    .modal-overlay.show { opacity: 1; pointer-events: all; }
+    .modal-box {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 0;
+      max-width: 560px; width: 93%;
+      max-height: 85vh;
+      display: flex; flex-direction: column;
+      transform: translateY(30px); transition: transform .3s;
+      box-shadow: 0 20px 60px rgba(0,0,0,.2);
+      overflow: hidden;
+    }
+    .modal-overlay.show .modal-box { transform: translateY(0); }
+    .modal-header {
+      background: linear-gradient(135deg, var(--blue-dark), var(--blue));
+      padding: 24px 30px; color: var(--white);
+      display: flex; align-items: center; justify-content: space-between;
+      flex-shrink: 0;
+    }
+    .modal-header h3 { font-weight: 700; font-size: 1.1rem; }
+    .modal-header-close {
+      width: 32px; height: 32px;
+      background: rgba(255,255,255,.18);
+      border: none; border-radius: 8px; cursor: pointer;
+      color: var(--white); font-size: 18px; font-weight: 300;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s;
+    }
+    .modal-header-close:hover { background: rgba(255,255,255,.3); }
+    .modal-body {
+      padding: 28px 30px; overflow-y: auto; flex: 1;
+      font-family: 'Lora', serif; font-size: .9rem;
+      color: var(--text-mid); line-height: 1.8;
+    }
+    .modal-body h4 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700; font-size: .95rem;
+      color: var(--text); margin: 20px 0 8px;
+    }
+    .modal-body h4:first-child { margin-top: 0; }
+    .modal-body p { margin-bottom: 10px; }
+    .modal-body ul { padding-left: 18px; margin-bottom: 10px; }
+    .modal-body ul li { margin-bottom: 6px; }
+    .modal-footer {
+      padding: 20px 30px; border-top: 1px solid #edf0f7;
+      flex-shrink: 0; text-align: right;
+    }
+    .modal-footer .modal-close-btn {
+      background: var(--blue); color: var(--white);
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 14px;
+      padding: 12px 32px; border-radius: 50px; border: none;
+      cursor: pointer; transition: background .2s, transform .2s;
+    }
+    .modal-footer .modal-close-btn:hover { background: var(--blue-dark); transform: translateY(-1px); }
+
+    /* ============================================================
+       SECTION COMMONS
+    ============================================================ */
+    .section-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(42,77,136,.08);
+      border: 1.5px solid rgba(42,77,136,.18);
+      border-radius: 50px;
+      padding: 7px 18px;
+      font-size: 13px; font-weight: 600; color: var(--blue);
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.7rem, 3vw, 2.6rem);
+      color: var(--text); line-height: 1.25;
+      margin-bottom: 12px;
+    }
+    .section-sub {
+      font-family: 'Lora', serif;
+      font-size: 1rem; color: var(--text-mid);
+      line-height: 1.8; max-width: 540px;
+    }
+    .section-head { margin-bottom: 52px; }
+
+    /* ============================================================
+       SVG ICONS — minimalis, modern, bersih
+    ============================================================ */
+    .icon-svg {
+      width: 32px; height: 32px;
+      stroke: var(--blue); fill: none;
+      stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+    }
+    /* Icon untuk guarantee steps (putih di atas lingkaran biru) */
+    .icon-svg--white {
+      stroke: var(--white);
+    }
+
+    /* ============================================================
+       SECTION 2 — KEUNGGULAN
+    ============================================================ */
+    .why {
+      padding: 100px 0;
+      background: var(--white);
+    }
+    .why .section-head {
+      text-align: center;
+    }
+    .why .section-head .section-pill {
+      display: inline-flex;
+    }
+    .why .section-sub {
+      margin: 0 auto;
+    }
+    .why__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    .why__card {
+      background: var(--off-white);
+      border: 1.5px solid #edf1f8;
+      border-radius: var(--radius-lg);
+      padding: 36px 24px 32px;
+      text-align: center;
+      position: relative; overflow: hidden;
+      transition: transform .25s, box-shadow .25s, border-color .25s;
+    }
+    .why__card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 4px;
+      background: linear-gradient(90deg, var(--blue), var(--blue-mid));
+      opacity: 0; transition: opacity .25s;
+    }
+    .why__card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(42,77,136,.18);
+      background: var(--white);
+    }
+    .why__card:hover::before { opacity: 1; }
+    .why__icon-wrap {
+      width: 68px; height: 68px;
+      background: linear-gradient(135deg, #dce6f8, #bdd0f4);
+      border-radius: 20px;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px;
+      transition: transform .25s;
+    }
+    .why__card:hover .why__icon-wrap { transform: scale(1.1) rotate(-3deg); }
+    .why__card-title {
+      font-weight: 700; font-size: 1rem;
+      color: var(--text); margin-bottom: 10px;
+    }
+    .why__card-text {
+      font-family: 'Lora', serif;
+      font-size: .88rem; color: var(--text-mid); line-height: 1.7;
+    }
+
+    /* ============================================================
+       SECTION 3 — GARANSI
+    ============================================================ */
+    .guarantee {
+      padding: 100px 0;
+      background: linear-gradient(180deg, #f0f4fb 0%, #e8eef8 100%);
+    }
+    .guarantee .section-head {
+      text-align: center;
+    }
+    .guarantee .section-head .section-pill {
+      display: inline-flex;
+    }
+    .guarantee .section-sub {
+      margin: 0 auto;
+    }
+    .guarantee__flow {
+      display: flex; align-items: flex-start;
+      justify-content: center; gap: 0;
+      position: relative; max-width: 820px; margin: 0 auto;
+    }
+    .guarantee__step {
+      flex: 1; text-align: center;
+      padding: 0 16px; position: relative; z-index: 1;
+    }
+    .guarantee__step-icon {
+      width: 88px; height: 88px;
+      background: linear-gradient(135deg, var(--blue), var(--blue-mid));
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px;
+      box-shadow: 0 8px 28px rgba(42,77,136,.30);
+      position: relative;
+    }
+    .guarantee__step-icon::after {
+      content: '';
+      position: absolute; inset: -6px;
+      border-radius: 50%;
+      border: 2px dashed rgba(42,77,136,.22);
+    }
+    .guarantee__arrow {
+      flex-shrink: 0; display: flex;
+      align-items: center; padding-bottom: 60px;
+    }
+    .guarantee__arrow svg {
+      width: 36px; height: 36px; fill: none;
+      stroke: var(--blue); stroke-width: 2.5;
+      opacity: .4;
+    }
+    .guarantee__step-num {
+      display: inline-block;
+      background: var(--blue); color: var(--white);
+      border-radius: 50%; width: 24px; height: 24px;
+      font-size: 12px; font-weight: 700;
+      line-height: 24px; margin-bottom: 10px;
+    }
+    .guarantee__step-title {
+      font-weight: 700; font-size: 1rem;
+      color: var(--text); margin-bottom: 8px;
+    }
+    .guarantee__step-text {
+      font-family: 'Lora', serif;
+      font-size: .88rem; color: var(--text-mid); line-height: 1.65;
+    }
+    .guarantee__note {
+      text-align: center; margin-top: 40px;
+      font-size: 12.5px; color: var(--text-light);
+      font-style: italic; max-width: 560px; margin-left: auto; margin-right: auto;
+      line-height: 1.7;
+    }
+
+    /* ============================================================
+       SECTION 4 — HARGA
+    ============================================================ */
+    .pricing {
+      padding: 100px 0;
+      background: var(--white);
+    }
+    .pricing .section-head {
+      text-align: center;
+    }
+    .pricing .section-head .section-pill {
+      display: inline-flex;
+    }
+    .pricing .section-sub {
+      margin: 0 auto;
+    }
+    .pricing__layout {
+      display: grid;
+      grid-template-columns: 1fr 1.08fr;
+      gap: 32px; align-items: start;
+    }
+
+    /* Kiloan card */
+    .kiloan-card {
+      background: var(--off-white);
+      border: 1.5px solid #e0e7f4;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    .kiloan-card__header {
+      background: linear-gradient(135deg, var(--blue-dark), var(--blue));
+      padding: 24px 28px;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .kiloan-card__header-icon {
+      width: 50px; height: 50px;
+      background: rgba(255,255,255,.18);
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      border: 1.5px solid rgba(255,255,255,.3);
+      flex-shrink: 0;
+    }
+    .kiloan-card__header-title {
+      font-weight: 700; font-size: 1.1rem; color: var(--white);
+    }
+    .kiloan-card__header-sub {
+      font-size: 12px; color: rgba(255,255,255,.65); margin-top: 3px;
+    }
+    .kiloan-card__body { padding: 24px 28px; }
+
+    /* Speed toggle */
+    .speed-toggle {
+      display: flex; gap: 8px;
+      background: #e8eef8; border-radius: 50px;
+      padding: 5px; margin-bottom: 20px;
+    }
+    .speed-btn {
+      flex: 1; padding: 9px 0;
+      border-radius: 50px; border: none;
+      font-family: 'Poppins', sans-serif;
+      font-size: 13px; font-weight: 700;
+      cursor: pointer; transition: all .2s;
+      color: var(--text-mid); background: transparent;
+    }    .speed-btn.active {
+      background: var(--white);
+      color: var(--blue);
+      box-shadow: 0 2px 10px rgba(42,77,136,.18);
+    }
+    .kiloan-min-note {
+      font-size: 12px; color: var(--text-light);
+      margin-bottom: 16px;
+    }
+    .kiloan-items { list-style: none; }
+    .kiloan-item {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 13px 0;
+      border-bottom: 1.5px dashed #d4dcea;
+      font-size: .92rem;
+    }
+    .kiloan-item:last-child { border-bottom: none; }
+    .kiloan-item__name { color: var(--text); font-weight: 500; }
+    .kiloan-item__price { font-weight: 700; color: var(--blue); }
+
+    /* Subscription cards */
+    .sub-cards { display: flex; flex-direction: column; gap: 20px; }
+    .sub-card {
+      background: var(--white);
+      border: 1.5px solid #e0e7f4;
+      border-radius: var(--radius-lg);
+      padding: 26px 28px;
+      position: relative; overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform .25s, box-shadow .25s;
+    }
+    .sub-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    .sub-card--featured {
+      border-color: var(--blue);
+      background: linear-gradient(145deg, #f0f5ff 0%, #fff 50%);
+    }
+    .sub-card__badge {
+      position: absolute; top: 16px; right: 16px;
+      background: var(--blue); color: var(--white);
+      font-size: 11px; font-weight: 700;
+      padding: 4px 14px; border-radius: 50px;
+      text-transform: uppercase; letter-spacing: .8px;
+    }
+    .sub-card__badge--promo { background: #e53935; }
+    .sub-card__name {
+      font-weight: 700; font-size: 1rem; color: var(--text);
+      margin-bottom: 4px;
+    }
+    .sub-card__quota {
+      font-size: 12.5px; color: var(--text-light); margin-bottom: 14px;
+    }
+    .sub-card__pricing { display: flex; align-items: baseline; gap: 10px; }
+    .sub-card__price-old {
+      font-size: 14px; color: var(--text-light);
+      text-decoration: line-through;
+    }
+    .sub-card__price-new {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800; font-size: 1.6rem;
+      color: var(--blue-bright);
+    }
+    .sub-card__price-unit {
+      font-size: 12px; color: var(--text-light); font-weight: 400;
+    }
+    .sub-card__tag {
+      display: inline-block;
+      background: rgba(64,112,212,.1);
+      border: 1px solid rgba(64,112,212,.25);
+      color: var(--blue-bright);
+      border-radius: 50px;
+      font-size: 11px; font-weight: 700;
+      padding: 3px 12px; margin-top: 10px;
+    }
+
+    /* ============================================================
+       SECTION 5 — FAQ
+    ============================================================ */
+    .faq {
+      padding: 100px 0;
+      background: linear-gradient(180deg, #f7f9fc 0%, #eef3fb 100%);
+    }
+    .faq__list { max-width: 760px; margin: 0 auto; }
+    .faq__item { border-bottom: 1.5px solid #dde6f4; }
+    .faq__q {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; padding: 22px 0;
+      cursor: pointer; user-select: none;
+      font-weight: 600; font-size: .97rem; color: var(--text);
+      transition: color .2s;
+    }
+    .faq__q:hover { color: var(--blue); }
+    .faq__icon {
+      width: 32px; height: 32px; flex-shrink: 0;
+      background: #eaf0fb; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--blue); font-size: 20px; font-weight: 300;
+      transition: transform .3s, background .3s;
+    }
+    .faq__item.open .faq__icon {
+      transform: rotate(45deg);
+      background: var(--blue); color: var(--white);
+    }
+    .faq__a {
+      max-height: 0; overflow: hidden;
+      transition: max-height .38s ease;
+    }
+    .faq__a-inner {
+      font-family: 'Lora', serif;
+      font-size: .95rem; color: var(--text-mid);
+      line-height: 1.82; padding-bottom: 22px;
+    }
+    .faq__item.open .faq__a { max-height: 300px; }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    .footer {
+      background: var(--blue-dark);
+      color: rgba(255,255,255,.65);
+      padding: 60px 0 0;
+    }
+    /* 2 kolom saja: brand kiri, menu kanan */
+    .footer__grid {
+      display: grid;
+      grid-template-columns: 1.8fr 1fr;
+      gap: 60px; padding-bottom: 50px;
+    }
+    .footer__brand-name-text {
+      font-family: 'Lora', serif; font-weight: 700; font-size: 1.5rem;
+      color: var(--white); margin-bottom: 6px;
+    }
+    .footer__brand-logo-wrap {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 10px;
+    }
+    .footer__brand-mark {
+      font-family: 'Lora', serif;
+      font-weight: 700; font-size: 22px;
+      color: var(--white); letter-spacing: -.5px; line-height: 1;
+    }
+    .footer__brand-name {
+      font-family: 'Lora', serif; font-weight: 600; font-size: 18px;
+      color: var(--white); line-height: 1;
+    }
+    .footer__brand-name small {
+      display: block; font-family: 'Poppins', sans-serif;
+      font-size: 10px; font-weight: 400; opacity: .45;
+      letter-spacing: 1.8px; text-transform: uppercase; margin-top: 2px;
+    }    .footer__brand-sub {
+      font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+      color: rgba(255,255,255,.4); margin-bottom: 14px;
+    }
+    .footer__brand-desc {
+      font-family: 'Lora', serif; font-size: .88rem;
+      line-height: 1.8; max-width: 340px;
+      text-align: justify;
+    }
+    .footer__heading {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700; font-size: .9rem; color: var(--white);
+      text-transform: uppercase; letter-spacing: 1px; margin-bottom: 18px;
+    }
+    .footer__links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer__links a { font-size: .85rem; transition: color .2s; }
+    .footer__links a:hover { color: var(--white); }
+    .footer__bottom {
+      border-top: 1px solid rgba(255,255,255,.1);
+      padding: 18px 0;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 10px;
+    }
+    .footer__copy { font-size: .8rem; color: rgba(255,255,255,.35); }
+
+    /* ============================================================
+       SCROLL REVEAL
+    ============================================================ */
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: .1s; }
+    .reveal-delay-2 { transition-delay: .2s; }
+    .reveal-delay-3 { transition-delay: .3s; }
+    .reveal-delay-4 { transition-delay: .4s; }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 1024px) {
+      .why__grid { grid-template-columns: repeat(2, 1fr); }
+      .pricing__layout { grid-template-columns: 1fr; }
+      .sub-cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+      }
+    }
+
+    @media (max-width: 860px) {
+      .hero__grid { grid-template-columns: 1fr; gap: 40px; }
+      .navbar__links { display: none; }
+      .footer__grid { grid-template-columns: 1fr; gap: 32px; }
+      .guarantee__flow { flex-direction: column; align-items: center; gap: 24px; }
+      .guarantee__arrow { display: none; }
+      .guarantee__step { max-width: 320px; width: 100%; }
+    }
+
+    @media (max-width: 640px) {
+      .why__grid { grid-template-columns: 1fr 1fr; }
+      .sub-cards { grid-template-columns: 1fr; }
+      .hero { padding: 90px 0 60px; }
+      .form-card { padding: 28px 22px; }
+    }
+
+    @media (max-width: 400px) {
+      .why__grid { grid-template-columns: 1fr; }
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- ================================================================
+     NAVBAR
+================================================================ -->
+<nav class="navbar" id="navbar">
+  <div class="navbar__inner">
+    <a href="#" class="navbar__logo">
+      <!-- Logo: teks CB tanpa kotak/oval -->
+      <div class="navbar__logo-mark">CB</div>
+      <div class="navbar__logo-name">
+        CuciBeres
+        <small>Laundry Profesional</small>
+      </div>
+    </a>
+    <ul class="navbar__links">
+      <li><a href="#why">Keunggulan</a></li>
+      <li><a href="#guarantee">Garansi</a></li>
+      <li><a href="#pricing">Harga</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+<!-- ================================================================
+     SECTION 1 — HERO
+================================================================ -->
+<section class="hero" id="hero">
+  <div class="container">
+    <div class="hero__grid">
+
+      <!-- LEFT: Headline -->
+      <div class="hero__left">
+        <!-- Badge COMING SOON tanpa emoticon roket -->
+        <div class="hero__badge">COMING SOON</div>
+
+        <h1 class="hero__title">
+          Cucian Langsung Beres,<br/>Pikiran Tenang
+        </h1>
+
+        <p class="hero__sub">
+          Laundry yang mengerti waktumu — cucianmu dijemput dan dicuci cepat dengan berbagai pilihan aroma premium, siap melayanimu 24 jam dan higienis tanpa mencampur pakaian dengan orang lain.
+        </p>
+
+        <div class="hero__location">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+          </svg>
+          Lokasi: Jakarta Selatan, Pasar Minggu
+        </div>
+      </div>
+
+      <!-- RIGHT: Form Card -->
+      <div class="hero__right">
+        <div class="form-card" id="formCard">
+          <div class="form-card__title">Get Early Access</div>
+          <!-- Sub-headline tanpa emoticon -->
+          <p class="form-card__sub">Jadilah yang pertama mendapat promo sebelum kami launching</p>
+
+          <form id="earlyForm" novalidate>
+            <div class="form-group">
+              <label for="fullName">Nama Lengkap</label>
+              <input type="text" id="fullName" name="fullName" placeholder="Masukkan nama lengkap kamu" required />
+            </div>
+            <div class="form-group">
+              <label for="instagram">Username Instagram</label>
+              <input type="text" id="instagram" name="instagram" placeholder="@username_kamu" required />
+            </div>
+            <!-- Tombol CTA tanpa emoticon -->
+            <button type="submit" class="btn-cta">Daftar Sekarang</button>
+          </form>
+
+          <p class="form-privacy">
+            Dengan mendaftar, kamu setuju dengan
+            <a id="openPrivacy">kebijakan privasi kami</a>.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ================================================================
+     SECTION 2 — KEUNGGULAN
+================================================================ -->
+<section class="why" id="why">
+  <div class="container">
+    <div class="section-head">
+      <!-- Badge tanpa ✦ -->
+      <div class="section-pill reveal">Kenapa harus CuciBeres Laundry?</div>
+      <h2 class="section-title reveal">Cucianmu, Tanggung Jawab Kami</h2>
+      <p class="section-sub reveal">Kami hadir untuk memastikan pakaianmu bersih, harum, dan kembali ke tanganmu secepat mungkin.</p>
+    </div>
+
+    <div class="why__grid">
+
+      <!-- 1 Mesin 1 Customer — ikon mesin cuci minimalis -->
+      <div class="why__card reveal reveal-delay-1">
+        <div class="why__icon-wrap">
+          <svg class="icon-svg" viewBox="0 0 32 32">
+            <rect x="4" y="4" width="24" height="26" rx="3"/>
+            <circle cx="16" cy="18" r="6"/>
+            <circle cx="16" cy="18" r="3"/>
+            <line x1="8" y1="8" x2="10" y2="8"/>
+            <line x1="12" y1="8" x2="14" y2="8"/>
+            <circle cx="22" cy="8" r="1.5" fill="currentColor" stroke="none" style="fill:var(--blue)"/>
+          </svg>
+        </div>
+        <div class="why__card-title">1 Mesin 1 Customer</div>
+        <p class="why__card-text">Higienis, pakaian tidak pernah dicampur dengan pelanggan lain.</p>
+      </div>
+
+      <!-- Antar Jemput Cepat — ikon motor/pengiriman minimalis -->
+      <div class="why__card reveal reveal-delay-2">
+        <div class="why__icon-wrap">
+          <svg class="icon-svg" viewBox="0 0 32 32">
+            <path d="M2 20h4"/>
+            <path d="M26 20h4"/>
+            <circle cx="8" cy="22" r="3"/>
+            <circle cx="24" cy="22" r="3"/>
+            <path d="M11 22h10"/>
+            <path d="M8 19V14l5-5h8l3 5v5"/>
+            <path d="M13 9v6"/>
+          </svg>
+        </div>
+        <div class="why__card-title">Antar Jemput Cepat</div>
+        <p class="why__card-text">Layanan antar jemput maksimal 30 menit, langsung ke pintu rumahmu.</p>
+      </div>
+
+      <!-- Cuci Express 3 Jam — ikon timer/kilat minimalis -->
+      <div class="why__card reveal reveal-delay-3">
+        <div class="why__icon-wrap">
+          <svg class="icon-svg" viewBox="0 0 32 32">
+            <circle cx="16" cy="17" r="11"/>
+            <polyline points="16 11 16 17 20 20"/>
+            <line x1="13" y1="4" x2="19" y2="4"/>
+            <line x1="16" y1="4" x2="16" y2="6"/>
+          </svg>
+        </div>
+        <div class="why__card-title">Cuci Express 3 Jam</div>
+        <p class="why__card-text">Layanan kilat siap pakai, bersih dan wangi dalam 3 jam saja.</p>
+      </div>
+
+      <!-- Layanan 24 Jam — ikon bulan/bintang/jam minimalis -->
+      <div class="why__card reveal reveal-delay-4">
+        <div class="why__icon-wrap">
+          <svg class="icon-svg" viewBox="0 0 32 32">
+            <path d="M24 17a9 9 0 1 1-9-9 7 7 0 0 0 9 9z"/>
+            <line x1="22" y1="6" x2="22" y2="4"/>
+            <line x1="26" y1="10" x2="28" y2="10"/>
+            <line x1="23.5" y1="7.5" x2="25" y2="6"/>
+          </svg>
+        </div>
+        <div class="why__card-title">Layanan 24 Jam</div>
+        <p class="why__card-text">Siap melayani kapan saja tanpa henti, 7 hari seminggu.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ================================================================
+     SECTION 3 — GARANSI
+================================================================ -->
+<section class="guarantee" id="guarantee">
+  <div class="container">
+    <div class="section-head">
+      <!-- Tag badge baru -->
+      <div class="section-pill reveal">Bebas rasa khawatir</div>
+      <h2 class="section-title reveal">Garansi Bersih atau Kami Cuci Ulang</h2>
+      <p class="section-sub reveal">Kepuasanmu adalah prioritas kami. Kalau hasil cucian kurang memuaskan, cukup ikuti 3 langkah berikut.</p>
+    </div>
+
+    <div class="guarantee__flow reveal">
+
+      <!-- Step 1: Lapor — ikon pesan minimalis -->
+      <div class="guarantee__step">
+        <div class="guarantee__step-icon">
+          <svg class="icon-svg icon-svg--white" viewBox="0 0 32 32" style="width:34px;height:34px">
+            <path d="M6 6h20a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H10l-6 4V8a2 2 0 0 1 2-2z"/>
+            <line x1="11" y1="13" x2="21" y2="13"/>
+            <line x1="11" y1="17" x2="17" y2="17"/>
+          </svg>
+        </div>
+        <div class="guarantee__step-num">1</div>
+        <div class="guarantee__step-title">Lapor</div>
+        <p class="guarantee__step-text">Hubungi tim kami via chat jika hasil cucian kurang memuaskan.</p>
+      </div>
+
+      <!-- Arrow -->
+      <div class="guarantee__arrow">
+        <svg viewBox="0 0 48 24"><path d="M2 12 H42 M32 4 L46 12 L32 20" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+
+      <!-- Step 2: Kami Cek — ikon verifikasi/ceklis minimalis -->
+      <div class="guarantee__step">
+        <div class="guarantee__step-icon">
+          <svg class="icon-svg icon-svg--white" viewBox="0 0 32 32" style="width:34px;height:34px">
+            <circle cx="16" cy="16" r="11"/>
+            <polyline points="11 16 14.5 19.5 21 13"/>
+          </svg>
+        </div>
+        <div class="guarantee__step-num">2</div>
+        <div class="guarantee__step-title">Kami Cek</div>
+        <p class="guarantee__step-text">Tim kami akan memverifikasi laporan dan segera menindaklanjuti.</p>
+      </div>
+
+      <!-- Arrow -->
+      <div class="guarantee__arrow">
+        <svg viewBox="0 0 48 24"><path d="M2 12 H42 M32 4 L46 12 L32 20" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+
+      <!-- Step 3: Cuci Ulang — ikon baju/bintang minimalis -->
+      <div class="guarantee__step">
+        <div class="guarantee__step-icon">
+          <svg class="icon-svg icon-svg--white" viewBox="0 0 32 32" style="width:34px;height:34px">
+            <path d="M16 4 L12 10 H6 L11 14.5 L9 21 L16 17 L23 21 L21 14.5 L26 10 H20 Z"/>
+          </svg>
+        </div>
+        <div class="guarantee__step-num">3</div>
+        <div class="guarantee__step-title">Cuci Ulang Gratis</div>
+        <p class="guarantee__step-text">Pakaianmu dicuci ulang secara gratis hingga benar-benar bersih dan rapi.</p>
+      </div>
+
+    </div>
+
+    <!-- Footnote yang diperbarui -->
+    <p class="guarantee__note reveal">* Syarat dan ketentuan berlaku. Garansi berlaku untuk keluhan yang dilaporkan dalam 24 jam setelah cucian diterima.</p>
+  </div>
+</section>
+
+
+<!-- ================================================================
+     SECTION 4 — HARGA
+================================================================ -->
+<section class="pricing" id="pricing">
+  <div class="container">
+    <div class="section-head">
+      <!-- Badge tanpa emoticon -->
+      <div class="section-pill reveal">Harga terjangkau</div>
+      <!-- Headline baru -->
+      <h2 class="section-title reveal">Paket dan Harga</h2>
+      <p class="section-sub reveal">Pilih paket yang sesuai kebutuhanmu. Semua harga sudah termasuk layanan antar jemput.</p>
+    </div>
+
+    <div class="pricing__layout">
+
+      <!-- Kiloan Card -->
+      <div class="kiloan-card reveal">
+        <div class="kiloan-card__header">
+          <!-- Ikon mesin cuci minimalis SVG -->
+          <div class="kiloan-card__header-icon">
+            <svg width="26" height="26" viewBox="0 0 32 32" fill="none"
+                 stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="4" y="4" width="24" height="26" rx="3"/>
+              <circle cx="16" cy="18" r="6"/>
+              <circle cx="16" cy="18" r="3"/>
+              <line x1="8" y1="8" x2="10" y2="8"/>
+              <line x1="12" y1="8" x2="14" y2="8"/>
+            </svg>
+          </div>
+          <div>
+            <div class="kiloan-card__header-title">Layanan Kiloan</div>
+            <div class="kiloan-card__header-sub">Bayar sesuai berat laundry kamu</div>
+          </div>
+        </div>
+        <div class="kiloan-card__body">
+          <div class="speed-toggle">
+            <button class="speed-btn active" onclick="setSpeed(this,'reguler')">Reguler (3 Hari)</button>
+            <button class="speed-btn" onclick="setSpeed(this,'express')">Express (3 Jam)</button>
+          </div>
+          <!-- Min. 3 kg tanpa emoticon 📦 -->
+          <p class="kiloan-min-note">Min. 3 kg &nbsp;·&nbsp; harga /kg</p>
+          <ul class="kiloan-items">
+            <li class="kiloan-item">
+              <span class="kiloan-item__name">Cuci Kering Lipat</span>
+              <span class="kiloan-item__price"
+                    data-reguler="Rp5.000/kg"
+                    data-express="Rp15.000/kg">Rp5.000/kg</span>
+            </li>
+            <li class="kiloan-item">
+              <span class="kiloan-item__name">Cuci Kering Gosok</span>
+              <span class="kiloan-item__price"
+                    data-reguler="Rp8.000/kg"
+                    data-express="Rp30.000/kg">Rp8.000/kg</span>
+            </li>
+            <li class="kiloan-item">
+              <span class="kiloan-item__name">Setrika Kiloan</span>
+              <span class="kiloan-item__price"
+                    data-reguler="Rp5.000/kg"
+                    data-express="Rp20.000/kg">Rp5.000/kg</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Subscription Cards -->
+      <div class="sub-cards">
+
+        <!-- Anak Kost — badge tanpa emoticon -->
+        <div class="sub-card reveal reveal-delay-1">
+          <div class="sub-card__badge sub-card__badge--promo">Promo Launching</div>
+          <div class="sub-card__name">Paket Anak Kost</div>
+          <!-- Kuota tanpa 📦 -->
+          <div class="sub-card__quota">Kuota 8 kg / bulan</div>
+          <div class="sub-card__pricing">
+            <span class="sub-card__price-old">Rp59.000</span>
+            <div>
+              <span class="sub-card__price-new">Rp50.000</span>
+              <span class="sub-card__price-unit"> / bulan</span>
+            </div>
+          </div>
+          <span class="sub-card__tag">Hemat Rp9.000</span>
+        </div>
+
+        <!-- Rumah Tangga (Featured) — badge tanpa emoticon -->
+        <div class="sub-card sub-card--featured reveal reveal-delay-2">
+          <div class="sub-card__badge">Paling Populer</div>
+          <div class="sub-card__name">Paket Rumah Tangga</div>
+          <div class="sub-card__quota">Kuota 20 kg / bulan</div>
+          <div class="sub-card__pricing">
+            <span class="sub-card__price-old">Rp160.000</span>
+            <div>
+              <span class="sub-card__price-new">Rp149.000</span>
+              <span class="sub-card__price-unit"> / bulan</span>
+            </div>
+          </div>
+          <span class="sub-card__tag">Hemat Rp11.000</span>
+        </div>
+
+        <!-- Keluarga — badge tanpa emoticon -->
+        <div class="sub-card reveal reveal-delay-3">
+          <div class="sub-card__badge sub-card__badge--promo">Promo Launching</div>
+          <div class="sub-card__name">Paket Keluarga</div>
+          <div class="sub-card__quota">Kuota 40 kg / bulan</div>
+          <div class="sub-card__pricing">
+            <span class="sub-card__price-old">Rp320.000</span>
+            <div>
+              <span class="sub-card__price-new">Rp299.000</span>
+              <span class="sub-card__price-unit"> / bulan</span>
+            </div>
+          </div>
+          <span class="sub-card__tag">Hemat Rp21.000</span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================================================================
+     SECTION 5 — FAQ
+================================================================ -->
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="section-head" style="text-align:center">
+      <!-- Badge tanpa emoticon -->
+      <div class="section-pill reveal" style="margin:0 auto 16px">FAQ</div>
+      <h2 class="section-title reveal" style="text-align:center">Pertanyaan yang Sering Diajukan</h2>
+      <!-- Sub-headline tanpa emoticon -->
+      <p class="section-sub reveal" style="margin:0 auto 52px">Sebelum daftar, baca terlebih dahulu biar makin yakin</p>
+    </div>
+
+    <div class="faq__list">
+
+      <div class="faq__item reveal">
+        <div class="faq__q" onclick="toggleFaq(this)">
+          Apakah pakaian saya dicampur dengan milik pelanggan lain?
+          <span class="faq__icon">+</span>
+        </div>
+        <div class="faq__a">
+          <p class="faq__a-inner">Tidak sama sekali. Kami menerapkan sistem <strong>1 Mesin 1 Customer</strong>, sehingga pakaian Anda dicuci secara terpisah agar lebih higienis dan tidak tertukar.</p>
+        </div>
+      </div>
+
+      <div class="faq__item reveal">
+        <div class="faq__q" onclick="toggleFaq(this)">
+          Di mana area layanannya dan apakah ada biaya antar-jemput?
+          <span class="faq__icon">+</span>
+        </div>
+        <div class="faq__a">
+          <p class="faq__a-inner">Kami beroperasi di area <strong>Pasar Minggu, Jakarta Selatan</strong>. Semua harga layanan sudah termasuk fasilitas <strong>gratis antar-jemput</strong> dengan waktu penjemputan cepat maksimal 30 menit.</p>
+        </div>
+      </div>
+
+      <div class="faq__item reveal">
+        <div class="faq__q" onclick="toggleFaq(this)">
+          Berapa lama proses pencucian dan kapan jam bukanya?
+          <span class="faq__icon">+</span>
+        </div>
+        <div class="faq__a">
+          <p class="faq__a-inner">Kami melayani <strong>24 jam penuh</strong> setiap hari. Anda bisa memilih layanan <strong>Reguler</strong> (selesai 3 hari) atau layanan kilat <strong>Express</strong> (selesai 3 jam) dengan berbagai pilihan aroma premium.</p>
+        </div>
+      </div>
+
+      <div class="faq__item reveal">
+        <div class="faq__q" onclick="toggleFaq(this)">
+          Berapa harga layanan kiloan dan paket bulanannya?
+          <span class="faq__icon">+</span>
+        </div>
+        <div class="faq__a">
+          <p class="faq__a-inner">Layanan kiloan mulai dari <strong>Rp5.000/kg</strong> (minimal order 3 kg) untuk Cuci Kering Lipat dan Setrika Kiloan, serta <strong>Rp8.000/kg</strong> untuk Cuci Kering Gosok. Tersedia juga Paket Berlangganan Bulanan promo launching mulai dari <strong>Rp50.000/bulan</strong> (kuota 8 kg) hingga <strong>Rp299.000/bulan</strong> (kuota 40 kg).</p>
+        </div>
+      </div>
+
+      <div class="faq__item reveal">
+        <div class="faq__q" onclick="toggleFaq(this)">
+          Bagaimana jika hasil cucian kurang bersih atau kurang rapi?
+          <span class="faq__icon">+</span>
+        </div>
+        <div class="faq__a">
+          <p class="faq__a-inner">Kami memberikan <strong>Garansi Bersih atau Kami Cuci Ulang</strong>. Anda cukup melapor kepada tim kami untuk diverifikasi, dan pakaian Anda akan segera kami cuci ulang secara gratis sesuai syarat dan ketentuan yang berlaku.</p>
+        </div>
+      </div>
+
+      <div class="faq__item reveal">
+        <div class="faq__q" onclick="toggleFaq(this)">
+          Gimana cara pesannya?
+          <span class="faq__icon">+</span>
+        </div>
+        <div class="faq__a">
+          <p class="faq__a-inner">Saat ini kami sedang persiapan grand opening. Anda bisa langsung mengisi formulir <strong>Get Early Access</strong> di bagian atas halaman ini dengan memasukkan Nama Lengkap dan Username Instagram untuk menjadi yang pertama mendapatkan akses pemesanan serta kode promo khusus pelanggan awal.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ================================================================
+     FOOTER
+================================================================ -->
+<footer class="footer">
+  <div class="container">
+    <!-- 2 kolom: brand kiri, menu kanan (kolom kontak dihapus) -->
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <div class="footer__brand-name-text">CuciBeres</div>
+        <div class="footer__brand-sub">Laundry Profesional</div>
+        <p class="footer__brand-desc">Jasa laundry yang ditangani oleh tim profesional dengan layanan laundry higienis, antar jemput cepat &amp; gratis, dan siap melayani 24 jam.</p>
+      </div>
+      <div>
+        <div class="footer__heading">Menu</div>
+        <ul class="footer__links">
+          <li><a href="#why">Keunggulan</a></li>
+          <li><a href="#guarantee">Garansi</a></li>
+          <li><a href="#pricing">Harga</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#" onclick="document.getElementById('privacyModal').classList.add('show');return false;">Kebijakan Privasi</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copy">© 2026 CuciBeres. All rights reserved.</p>
+      <p class="footer__copy">Coming Soon · Jakarta Selatan</p>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ================================================================
+     THANK YOU POPUP
+================================================================ -->
+<div class="popup-overlay" id="thankYouPopup">
+  <div class="popup-box">
+    <!-- Ikon minimalis: lingkaran biru dengan centang SVG -->
+    <div class="popup-icon">
+      <svg width="44" height="44" viewBox="0 0 44 44" fill="none"
+           stroke="#2A4D88" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="22" cy="22" r="20" stroke="#2A4D88" stroke-width="2"/>
+        <polyline points="13 22 19 28 31 16"/>
+      </svg>
+    </div>
+    <div class="popup-title">Terima Kasih, <span id="popupName"></span>!</div>
+    <p class="popup-text">
+      Kamu sudah masuk daftar tunggu CuciBeres.<br/>
+      Kami akan menghubungi segera via Instagram.
+    </p>
+    <button class="popup-close" onclick="closePopup()">Siap, Ditunggu!</button>
+  </div>
+</div>
+
+
+<!-- ================================================================
+     PRIVACY POLICY MODAL
+================================================================ -->
+<div class="modal-overlay" id="privacyModal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <!-- Judul tanpa emoticon gembok -->
+      <h3>Kebijakan Privasi</h3>
+      <button class="modal-header-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <!-- Tanpa "Terakhir diperbarui" -->
+      <p>CuciBeres berkomitmen untuk melindungi informasi pribadi Anda. Kebijakan ini menjelaskan bagaimana kami mengumpulkan dan menggunakan data yang Anda berikan melalui formulir ini.</p>
+
+      <h4>Data yang kami kumpulkan:</h4>
+      <ul>
+        <li>Nama lengkap Anda</li>
+        <li>Username Instagram Anda</li>
+      </ul>
+
+      <h4>Bagaimana kami menggunakannya:</h4>
+      <ul>
+        <li>Menghubungi Anda melalui Instagram untuk informasi pembukaan perdana (grand opening) dan kode promo khusus pelanggan awal</li>
+        <li>Memetakan jangkauan area layanan antar-jemput kami</li>
+      </ul>
+
+      <!-- "Komitmen kami" diganti "Kami tidak akan:" (hanya satu tulisan) -->
+      <h4>Kami tidak akan:</h4>
+      <ul>
+        <li>Menjual atau membagikan data pribadi Anda kepada pihak ketiga mana pun di luar kebutuhan pengiriman pesanan Anda</li>
+        <li>Mengirimkan pesan spam atau promosi produk lain yang tidak berkaitan dengan layanan laundry kami</li>
+      </ul>
+
+      <h4>Penyimpanan data:</h4>
+      <p>Data Anda disimpan secara aman di sistem internal kami di Google Sheet dan hanya dapat diakses oleh tim resmi CuciBeres untuk keperluan operasional layanan.</p>
+    </div>
+    <div class="modal-footer">
+      <button class="modal-close-btn" onclick="closeModal()">Tutup</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ================================================================
+     SCRIPTS
+================================================================ -->
+<script>
+  /* ---- Scroll Reveal ---- */
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        revealObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  revealEls.forEach(el => revealObserver.observe(el));
+
+  /* ---- Navbar scroll ---- */
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').style.background =
+      window.scrollY > 50 ? 'rgba(20,34,66,.98)' : 'rgba(26,42,80,.97)';
+  });
+
+  /* ---- Early Access Form ---- */
+  document.getElementById('earlyForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const name = document.getElementById('fullName').value.trim();
+    const ig   = document.getElementById('instagram').value.trim();
+    if (!name || !ig) {
+      alert('Mohon isi semua field terlebih dahulu.');
+      return;
+    }
+    // Show thank you popup
+    document.getElementById('popupName').textContent = name.charAt(0).toUpperCase() + name.slice(1);
+    document.getElementById('thankYouPopup').classList.add('show');
+    this.reset();
+  });
+
+  function closePopup() {
+    document.getElementById('thankYouPopup').classList.remove('show');
+  }
+  document.getElementById('thankYouPopup').addEventListener('click', function(e) {
+    if (e.target === this) closePopup();
+  });
+
+  /* ---- Privacy Modal ---- */
+  document.getElementById('openPrivacy').addEventListener('click', function(e) {
+    e.preventDefault();
+    document.getElementById('privacyModal').classList.add('show');
+  });
+
+  function closeModal() {
+    document.getElementById('privacyModal').classList.remove('show');
+  }
+  document.getElementById('privacyModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+
+  /* ---- FAQ Accordion ---- */
+  function toggleFaq(el) {
+    const item = el.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq__item.open').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  /* ---- Speed Toggle (Kiloan) ---- */
+  function setSpeed(btn, mode) {
+    document.querySelectorAll('.speed-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.kiloan-item__price').forEach(el => {
+      el.textContent = el.dataset[mode] || el.dataset.reguler;
+    });
+  }
+</script>
+
+</body>
+</html>
